@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ministry to the Sick portal for Queen of Peace Catholic Church in Ocala, FL. Request communion, learn about the ministry, or apply to serve." />
+  <meta name="keywords" content="Catholic Church, Ministry to the Sick, Ocala, Communion, Home Visits" />
+  <title>Ministry to the Sick - Queen of Peace Catholic Church</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="cross-icon" aria-hidden="true">✝</div>
+        <div>
+          <h1>Ministry to the Sick</h1>
+          <p class="subtitle">Queen of Peace Catholic Church • Ocala, Florida</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <div class="container" style="margin-top: 2rem;">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc-generated-placeholder/viewform?embedded=true" width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="church-info">
+          <h4>Queen of Peace Catholic Church</h4>
+          <p>6455 SW State Road 200, Ocala, FL 34476</p>
+          <p>Phone: (352) 629-5801 | Email: office@queenofpeaceocala.org</p>
+          <p style="margin-top: 1rem; font-style: italic;">
+            "Peace I leave with you; my peace I give to you." - John 14:27
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="loginModal" class="login-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="close-modal" aria-label="Close modal" onclick="closeLoginModal()">&times;</button>
+      <div class="modal-header">
+        <h3 id="modalTitle">Minister Portal Access</h3>
+        <p>Please enter your credentials</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" placeholder="Enter username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter password" required />
+        </div>
+        <button type="submit" class="card-button">Sign In</button>
+      </form>
+      <p class="help-text">Forgot your password? Contact the Ministry Coordinator</p>
+    </div>
+  </div>
+
+  <script defer src="js/portal.js"></script>
+</body>
+</html>
