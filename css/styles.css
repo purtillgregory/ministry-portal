@@ -1,5 +1,7 @@
-body { font-family: Georgia, serif; background: #f8f9fa; margin: 0; }
-.container { max-width: 1200px; margin: auto; padding: 20px; }
-.cross-icon { font-size: 3rem; color: #ffd700; }
-.card-button { background: #3949ab; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
-footer { background: #1a237e; color: white; text-align: center; padding: 2rem 0; margin-top: 4rem; }
+
+body { font-family: Georgia, serif; margin: 0; background: #f9f9f9; }
+.container { max-width: 960px; margin: 2rem auto; padding: 1rem; }
+.top-nav { background: #1a237e; padding: 1rem 0; }
+.nav-container { display: flex; justify-content: center; gap: 2rem; }
+.nav-container a { color: white; text-decoration: none; font-weight: bold; }
+.nav-container a:hover { text-decoration: underline; }
