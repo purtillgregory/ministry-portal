@@ -5,3 +5,31 @@ body { font-family: Georgia, serif; margin: 0; background: #f9f9f9; }
 .nav-container { display: flex; justify-content: center; gap: 2rem; }
 .nav-container a { color: white; text-decoration: none; font-weight: bold; }
 .nav-container a:hover { text-decoration: underline; }
+
+.resource-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 2rem;
+}
+.resource-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+.resource-card h2 {
+  margin-top: 0;
+}
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: #1a237e;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.btn:hover {
+  background: #303f9f;
+}
