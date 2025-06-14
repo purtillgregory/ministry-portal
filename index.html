@@ -18,5 +18,24 @@
     <h1>Home Communion Request</h1>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdTGHeVgCJ5eo0ZSrLfK1W_3o3b3WmInTuBbiSOR3FqvUm-GQ/viewform?embedded=true" width="640" height="1422" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
   </main>
+
+  <!-- 🔽 Add Firebase SDK and initialize -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDOA3sQsHk91zddql2PjpCSTFLH_H7_ITI",
+      authDomain: "mts-portal-35024.firebaseapp.com",
+      projectId: "mts-portal-35024",
+      storageBucket: "mts-portal-35024.firebasestorage.app",
+      messagingSenderId: "784836501245",
+      appId: "1:784836501245:web:db000d99f3a6525e192894",
+      measurementId: "G-LJH998H4GT"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>
 </html>
