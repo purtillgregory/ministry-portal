@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minister Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>Welcome to Your Dashboard</h1>
+    <p id="userInfo">Loading user info...</p>
+    <button id="logoutBtn">Logout</button>
+  </main>
+
+  <script>
+    const auth = firebase.auth();
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("userInfo").textContent = `Logged in as: ${user.email}`;
+      } else {
+        window.location.href = "minister-login.html";
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      auth.signOut().then(() => {
+        window.location.href = "minister-login.html";
+      });
+    });
+  </script>
+</body>
+</html>
