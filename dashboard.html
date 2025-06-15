@@ -6,33 +6,133 @@
   <title>Minister Dashboard</title>
   <link rel="stylesheet" href="css/styles.css" />
 
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script src="js/firebase-config.js"></script>
 </head>
 <body>
+  <header class="top-nav">
+    <div class="nav-container">
+      <a href="index.html">Home</a>
+      <a href="resources.html">Resources</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </div>
+  </header>
+
   <main class="container">
-    <h1>Welcome to Your Dashboard</h1>
+    <h1>Minister Dashboard</h1>
     <p id="userInfo">Loading user info...</p>
-    <button id="logoutBtn">Logout</button>
+
+    <section>
+      <h2>Current Recipients</h2>
+      <div id="recipientList">Loading...</div>
+    </section>
+
+    <section>
+      <h2>Add New Recipient</h2>
+      <form id="addRecipientForm">
+        <input type="text" id="recipientName" placeholder="Full Name" required />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Continuing Education Hours</h2>
+      <form id="logEducationForm">
+        <input type="text" id="activity" placeholder="Activity Description" required />
+        <input type="number" id="hours" placeholder="Hours" required />
+        <button type="submit">Log Hours</button>
+      </form>
+      <ul id="educationList"></ul>
+    </section>
   </main>
 
   <script>
     const auth = firebase.auth();
+    const db = firebase.firestore();
 
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        document.getElementById("userInfo").textContent = `Logged in as: ${user.email}`;
-      } else {
+    auth.onAuthStateChanged(async user => {
+      if (!user) {
         window.location.href = "minister-login.html";
+        return;
       }
+
+      document.getElementById("userInfo").textContent = `Logged in as: ${user.email}`;
+      loadRecipients(user.uid);
+      loadEducation(user.uid);
+
+      document.getElementById("addRecipientForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("recipientName").value.trim();
+        await db.collection("recipients").add({
+          name,
+          ministerId: user.uid,
+          status: "active",
+          reason: ""
+        });
+        document.getElementById("recipientName").value = "";
+        loadRecipients(user.uid);
+      });
+
+      document.getElementById("logEducationForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const activity = document.getElementById("activity").value.trim();
+        const hours = parseFloat(document.getElementById("hours").value);
+        await db.collection("education").add({
+          activity,
+          hours,
+          ministerId: user.uid,
+          timestamp: new Date()
+        });
+        document.getElementById("activity").value = "";
+        document.getElementById("hours").value = "";
+        loadEducation(user.uid);
+      });
     });
 
     document.getElementById("logoutBtn").addEventListener("click", () => {
-      auth.signOut().then(() => {
-        window.location.href = "minister-login.html";
-      });
+      auth.signOut().then(() => window.location.href = "minister-login.html");
     });
+
+    async function loadRecipients(uid) {
+      const list = document.getElementById("recipientList");
+      list.innerHTML = "";
+      const snapshot = await db.collection("recipients")
+        .where("ministerId", "==", uid)
+        .where("status", "==", "active")
+        .get();
+
+      if (snapshot.empty) {
+        list.textContent = "No recipients found.";
+        return;
+      }
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.textContent = `• ${data.name}`;
+        list.appendChild(div);
+      });
+    }
+
+    async function loadEducation(uid) {
+      const list = document.getElementById("educationList");
+      list.innerHTML = "";
+      const snapshot = await db.collection("education")
+        .where("ministerId", "==", uid)
+        .orderBy("timestamp", "desc")
+        .get();
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const li = document.createElement("li");
+        li.textContent = `${data.activity} - ${data.hours} hour(s)`;
+        list.appendChild(li);
+      });
+    }
   </script>
 </body>
 </html>
