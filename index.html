@@ -1,41 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ministry to the Sick - Home</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ministry to the Sick Portal</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <nav class="top-nav">
-    <div class="nav-container">
-      <a href="index.html">Home</a>
-      <a href="resources.html">Minister Resources</a>
-      <a href="calendar.html">Training Calendar</a>
-    </div>
-  </nav>
-  <main class="container">
-    <h1>Home Communion Request</h1>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdTGHeVgCJ5eo0ZSrLfK1W_3o3b3WmInTuBbiSOR3FqvUm-GQ/viewform?embedded=true" width="640" height="1422" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  <header class="landing-header">
+    <h1>Ministry to the Sick</h1>
+    <p class="subtitle">A portal for those who serve and those in need</p>
+  </header>
+
+  <main class="landing-main">
+    <section class="options-grid">
+      <a class="option-card" href="minister-login.html">
+        <h2>I'm a Minister</h2>
+        <p>Log in to manage visits, view resources, and track continuing education.</p>
+      </a>
+      <a class="option-card" href="request-communion.html">
+        <h2>I Need Communion</h2>
+        <p>Request to receive Holy Communion at home or in a care facility.</p>
+      </a>
+    </section>
   </main>
 
-  <!-- 🔽 Add Firebase SDK and initialize -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDOA3sQsHk91zddql2PjpCSTFLH_H7_ITI",
-      authDomain: "mts-portal-35024.firebaseapp.com",
-      projectId: "mts-portal-35024",
-      storageBucket: "mts-portal-35024.firebasestorage.app",
-      messagingSenderId: "784836501245",
-      appId: "1:784836501245:web:db000d99f3a6525e192894",
-      measurementId: "G-LJH998H4GT"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
+  <footer class="landing-footer">
+    <p>&copy; 2025 Ministry to the Sick • Queen of Peace Catholic Church</p>
+  </footer>
 </body>
 </html>
