@@ -56,7 +56,16 @@
 
     auth.onAuthStateChanged(async user => {
       if (!user) {
-        window.location.href = "minister-login.html";
+        document.body.innerHTML = `
+          <main class="container">
+            <h1>Login Required</h1>
+            <p>You must be logged in to access the dashboard.</p>
+            <p><a href="minister-login.html">Click here to log in</a></p>
+          </main>
+        `;
+        setTimeout(() => {
+          window.location.href = "minister-login.html";
+        }, 3000);
         return;
       }
 
